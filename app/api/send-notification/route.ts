@@ -12,6 +12,7 @@ const subscriptions: webPush.PushSubscription[] = []
 export async function POST(request: Request) {
     try {
         const { title, message } = await request.json()
+        console.log("send-notification", title, message)
 
         if (!title || !message) {
             return NextResponse.json(
@@ -41,6 +42,7 @@ export async function PUT(request: Request) {
     try {
         const subscription = await request.json()
         subscriptions.push(subscription)
+        console.log("Subscription added:", subscription)
 
         return NextResponse.json({ success: true })
     } catch (error) {

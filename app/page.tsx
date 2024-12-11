@@ -42,8 +42,7 @@ export default function Home() {
 
     return (
         <main>
-            <h1>Welcome to My PWA</h1>
-            <NotificationButton />
+            <div className="">aca andamios</div>
         </main>
     )
 }

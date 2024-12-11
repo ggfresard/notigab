@@ -30,6 +30,8 @@ export default function NotificationsPage() {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newSubscription),
                         })
+                    } else {
+                        setSubscription(existingSubscription)
                     }
                 })
                 .catch((error) => console.error("Service Worker error:", error))
