@@ -1,6 +1,5 @@
 "use client"
 
-import NotificationButton from "@/components/notification-button"
 import { useEffect } from "react"
 
 export default function Home() {
