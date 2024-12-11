@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import webpush, { PushSubscription } from "web-push"
+import webpush from "web-push"
+import { getSubscriptions } from "@/lib/subscription-store"
 
 webpush.setVapidDetails(
     "mailto:your-email@example.com",
@@ -9,21 +10,21 @@ webpush.setVapidDetails(
 
 export async function POST(req: NextRequest) {
     try {
-        const {
-            subscription,
-            title,
-            body,
-        }: { subscription: PushSubscription; title: string; body: string } =
-            await req.json()
+        const { title, body } = await req.json()
+        const subscriptions = getSubscriptions()
 
-        await webpush.sendNotification(
-            subscription,
-            JSON.stringify({ title, body })
+        const notifications = subscriptions.map((subscription) =>
+            webpush.sendNotification(
+                subscription,
+                JSON.stringify({ title, body })
+            )
         )
+
+        await Promise.all(notifications)
 
         return NextResponse.json({ success: true }, { status: 200 })
     } catch (error) {
-        console.error("Error sending notification:", error)
+        console.error("Error sending notifications:", error)
         return NextResponse.json({ success: false }, { status: 500 })
     }
 }
