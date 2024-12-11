@@ -3,7 +3,7 @@ import webpush from "web-push"
 import { getSubscriptions } from "@/lib/subscription-store"
 
 webpush.setVapidDetails(
-    "mailto:your-email@example.com",
+    "mailto:ggfresard@gmail.com",
     process.env.VAPID_PUBLIC_KEY!,
     process.env.VAPID_PRIVATE_KEY!
 )
