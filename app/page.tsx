@@ -1,5 +1,6 @@
 "use client"
 
+import NotificationButton from "@/components/notification-button"
 import { useEffect } from "react"
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
     return (
         <main>
             <h1>Welcome to My PWA</h1>
+            <NotificationButton />
         </main>
     )
 }
