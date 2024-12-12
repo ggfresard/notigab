@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
     })
 
     if (!response.ok) {
+        console.error("Failed to send notification", await response.json())
         return NextResponse.json(
             { error: "Failed to send notification" },
             { status: 500 }
